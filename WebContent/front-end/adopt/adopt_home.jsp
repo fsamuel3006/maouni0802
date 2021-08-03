@@ -219,7 +219,7 @@ table {
 	<form METHOD="post" ACTION="<%=request.getContextPath()%>/TrackingController" class="confirm">
 		<input type="hidden" name="id" value="${memberVO.id}">
 		<input type="hidden" name="action" value="getOne_For_Display">
-		<button type="submit">加入追蹤</button>
+		<button type="submit">查詢清單</button>
 	</form>	
 	
 		
@@ -307,21 +307,21 @@ table {
 		})
 	});
 	
-	$(".confirm").click(function(e){
-		e.preventDefault();
-		$.ajax({
-			url:"/MaoUni/TrackingController",
-			type:"post",
-			data: $(this).serialize(),
-			success: function(data){
-				if(data === 0){
-					swal("新增失敗！","這個毛孩已經在追蹤名單囉!","warning");
-				}else{
-					swal("新增成功！","這個毛孩加入追蹤名單囉!","success");
-				}
-			}
-		})
-	});
+// 	$(".confirm").click(function(e){
+// 		e.preventDefault();
+// 		$.ajax({
+// 			url:"/MaoUni/TrackingController",
+// 			type:"post",
+// 			data: $(this).serialize(),
+// 			success: function(data){
+// 				if(data === 0){
+// 					swal("新增失敗！","這個毛孩已經在追蹤名單囉!","warning");
+// 				}else{
+// 					swal("新增成功！","這個毛孩加入追蹤名單囉!","success");
+// 				}
+// 			}
+// 		})
+// 	});
 
 
 	

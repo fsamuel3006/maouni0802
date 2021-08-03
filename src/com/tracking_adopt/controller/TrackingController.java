@@ -41,9 +41,17 @@ public class TrackingController extends HttpServlet {
 				// 這邊接收請求參數-輸入格式錯誤處理
 				Integer id = new Integer(req.getParameter("id"));
 				//Integer det = new Integer(req.getParameter("det"));
+				Integer memid = new Integer(req.getParameter("memid"));
 				System.out.println(id);
 				
 				// 2.這邊開始查詢認養追蹤資料
+				MemberService memberSvc=new MemberService();
+				MemberVO memberVO=memberSvc.getOneMember(memid);
+				for() {
+					
+				}
+								
+				
 				
 				TrackingService trackingSvc = new TrackingService();
 				TrackingVO trackingVO = trackingSvc.getOneTracking(id);
@@ -67,7 +75,9 @@ public class TrackingController extends HttpServlet {
 				// 這是接收請求的參數
 				Integer id = new Integer(req.getParameter("id"));
 				Integer det = new Integer(req.getParameter("det"));
+				
 				// 開始查詢資料
+				
 				TrackingService trackingSvc = new TrackingService();
 				TrackingVO trackingVO = trackingSvc.getOneTracking(id);
 				// 查詢完成準備轉交給網頁呈現給使用者
@@ -77,7 +87,7 @@ public class TrackingController extends HttpServlet {
 				successView.forward(req, res);
 			} catch (Exception e) {
 				errorMsgs.add("查無資料" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/staff/wrong.jsp");
 				failureView.forward(req, res);
 			}
 		}
