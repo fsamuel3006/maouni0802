@@ -114,7 +114,7 @@
             	 <!-- 以下範圍為最上方包著商城管理以及右方後台人員的區塊, -->
                 <nav class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top">
                     <div class="container-fluid" style="margin-top:23px;margin-left:-6px;">
-<!--請看這行最右邊-->  <a class="btsp" href="Item_select_page.jsp">商城管理</a>  <!-- 這行是商城管理的標題，可以自行設定，還有href可以自行設定跳轉的頁面 -->
+<!--請看這行最右邊-->  <a class="btsp" href="Item_select_page.jsp">修改</a>  <!-- 這行是商城管理的標題，可以自行設定，還有href可以自行設定跳轉的頁面 -->
                        	 <ul class="nav navbar-nav flex-nowrap ml-auto" style="margin-top:-10px;">                         
                            
                             <li class="nav-item dropdown no-arrow" style="margin-top:10px">
@@ -200,6 +200,7 @@
 		<br> <input type="hidden" name="action" value="update"> <input
 			type="hidden" name="id" value="<%=StaffVO.getId()%>"> <input
 			type="submit" value="送出修改">
+		<a href="<%=request.getContextPath()%>/back-end/staff/allStaff.jsp">回上一頁</a>
 
 	</FORM>
 	

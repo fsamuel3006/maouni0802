@@ -2,6 +2,7 @@ package com.tracking_adopt.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,34 +32,28 @@ public class TrackingController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		// 從主鍵做查詢的寫法
+		// 這邊是從會員找追蹤不是追蹤的單一查詢
 
 		if ("getOne_For_Display".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
+			System.out.println(action);
 			try {
 				
 				// 這邊接收請求參數-輸入格式錯誤處理
-				Integer id = new Integer(req.getParameter("id"));
-				//Integer det = new Integer(req.getParameter("det"));
-				Integer memid = new Integer(req.getParameter("memid"));
+				Integer id = new Integer(req.getParameter("id").trim());
 				System.out.println(id);
 				
-				// 2.這邊開始查詢認養追蹤資料
-				MemberService memberSvc=new MemberService();
-				MemberVO memberVO=memberSvc.getOneMember(memid);
-				for() {
-					
-				}
-								
 				
+				// 2.這邊開始查詢認養追蹤資料
 				
 				TrackingService trackingSvc = new TrackingService();
-				TrackingVO trackingVO = trackingSvc.getOneTracking(id);
+				List<TrackingVO> listVO = trackingSvc.getMemberByid(id);
+				System.out.println(listVO);
 
-				// 3.認養追蹤的ID查詢送出
-				req.setAttribute("TrackingVO", trackingVO);
-				String url = "/front-endadopt/getonetracking.jsp";
+				// 3.認養追蹤的ID查詢送出，這邊放Tracking的東西是因為跑了list將list的元素set進來，所以利用key，value的特性寫。
+				req.setAttribute("TrackinglistVO", listVO);
+				String url = "/back-end/adopt/getonetracking.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 			} catch (Exception e) {
@@ -75,9 +70,7 @@ public class TrackingController extends HttpServlet {
 				// 這是接收請求的參數
 				Integer id = new Integer(req.getParameter("id"));
 				Integer det = new Integer(req.getParameter("det"));
-				
 				// 開始查詢資料
-				
 				TrackingService trackingSvc = new TrackingService();
 				TrackingVO trackingVO = trackingSvc.getOneTracking(id);
 				// 查詢完成準備轉交給網頁呈現給使用者
@@ -87,7 +80,7 @@ public class TrackingController extends HttpServlet {
 				successView.forward(req, res);
 			} catch (Exception e) {
 				errorMsgs.add("查無資料" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/staff/wrong.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("");
 				failureView.forward(req, res);
 			}
 		}

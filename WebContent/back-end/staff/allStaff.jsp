@@ -15,7 +15,7 @@
 
 	AuthorityService authoritySvc = new AuthorityService();
 	List<AuthorityVO> authoritylist = authoritySvc.getAll();
-	pageContext.setAttribute("list", list);
+	pageContext.setAttribute("authoritylist", list);
 %>
 
 
@@ -34,6 +34,7 @@
 	href="<%=request.getContextPath()%>/resources/css/hidden_menu.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/hidden_menu2.css">
+
 <style>
 .btn {
 	background: #e8c497;
@@ -126,9 +127,9 @@ body {
                  <ul class="menu">
                      <li><a href="<%= request.getContextPath() %>/back-end/member/listAllMember.jsp">會員資料管理</a></li>
                      <li><a href="<%= request.getContextPath() %>/back-end/item/itemHomePage.jsp">商城管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/front-end/message/addMessage.jsp">商城客服管理</a></li>
+                     <li><a href="<%= request.getContextPath() %>/back-end/message/addMessage.jsp">商城客服管理</a></li>
                      <li><a href="<%= request.getContextPath() %>/back-end/forumpost/forumPostHomePage.jsp">討論區管理</a></li>
-                     <li><a href="<%= request.getContextPath() %>/front-end/adopt/adopt_home.jsp">浪浪找家管理</a></li>
+                     <li><a href="<%= request.getContextPath() %>/back-end/adopt/adopt_home.jsp">浪浪找家管理</a></li>
                      <li><a href="<%= request.getContextPath() %>/back-end/article/select_page_art.jsp">知識站管理</a></li>
                      <li><a href="<%= request.getContextPath() %>/back-end/announcemet/select_page.jsp">公告管理</a></li>
                      <li><a href="<%= request.getContextPath() %>/back-end/groomer/groomerList.jsp">美容師管理</a></li>
@@ -137,10 +138,34 @@ body {
              </div>
          </div>
      </header>
+     
+      <div id="wrapper" style="margin-left: 120px;height: auto;">
+       			<div class="d-flex flex-column" id="content-wrapper" style="margin-right:5px;">
+       			<nav class="navbar navbar-light navbar-expand bg-white mb-4 topbar static-top">
+                    <div class="container-fluid" style="margin-top:23px;margin-left:-6px;">
+<!--請看這行最右邊-->  <a class="btsp" href="<%=request.getContextPath()%>/back-end/staff/allStaff.jsp">後台管理</a>  
+                       	 <ul class="nav navbar-nav flex-nowrap ml-auto" style="margin-top:-10px;">                         
+                           
+                            <li class="nav-item dropdown no-arrow" style="margin-top:10px">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
+                                	
+                                	<img class="border rounded-circle img-profile" style="widht:40px;height:40px;margin-top:-5px;" src="<%=request.getContextPath()%>/resources/images/items/MaoUniICON.png"></a>
+                                    <div class="dropdown-menu dropdown-menu-right animated--grow-in">
+                                    	<a class="dropdown-item" href="<%=request.getContextPath()%>/back-end/staff/login.jsp" style="font-weight:700;color:#646464;">Logout</a>
+                                    </div>
+	                   			</div>
+	                    	</li>
+	                    </ul>
+	            	</div>
+	            </nav>
 
 			<h5 align="center">
 				<input type="button" value="新增"
 					onclick="window.location.href = '<%=request.getContextPath()%>/back-end/staff/addStaff.jsp'">
+			</h5>
+			<h5 align="center">
+				<input type="button" value="查看權限"
+					onclick="window.location.href = '<%=request.getContextPath()%>/back-end/authority/allAuthority.jsp'">
 			</h5>
 			<table align="center" "border:3px #cccccc solid" cellpadding="10" 
 				border='1'>
@@ -152,8 +177,8 @@ body {
 					<th>聯絡人</th>	
 					<th>狀態</th>	
 					<th>修改</th>
-					<th>查詢狀態</th>
-					<th>權限</th>
+					<th>單一查詢</th>
+					
 					
 				</tr>
 				<c:forEach var="staffVO" items="${list}">
@@ -189,16 +214,9 @@ body {
 						
 					
 					<td>
-					
-							<FORM METHOD="post"
-								ACTION="<%=request.getContextPath()%>/backstage_authority/AuthorityServlet"
-								style="margin-bottom: 0px;">
-								<input type="submit" value="權限"> <input type="hidden"
-									name="id" value="${staffVO.id}"> <input type="hidden"
-									name="action" value="get_One_Display">
-							</FORM>
-							
+						
 						</td>
+						
 				</c:forEach>
 			</table>
 

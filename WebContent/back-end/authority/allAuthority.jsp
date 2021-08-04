@@ -199,7 +199,6 @@
 		<th>員工權限</th>
 		<th>功能名稱</th>
 		<th>修改</th>
-		<th>單一查詢</th>
 		
 	</tr>
 		<c:forEach var="AuthorityVO" items="${list}"> 
@@ -218,21 +217,13 @@
 			     <input type="submit" value="修改">
 			     <input type="hidden" name="id" value="${AuthorityVO.id}">
 			     <input type="hidden" name="action"	value="getOne_For_Updat"></FORM>
-			</td>
-			
-			<td>
-			   <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/backstage_authority/AuthorityServlet" style="margin-bottom: 0px;">
-			     <input type="submit" value="單一查詢">
-			     <input type="hidden" name="id" value="${AuthorityVO.id}">
-			     <input type="hidden" name="action" value="get_One_Display"></FORM>
-			</td>
-			
-			
-			
-			
+			</td>		
 		</tr>
-	</c:forEach>
+	</c:forEach>	
 </table>
+
+<a href="<%=request.getContextPath()%>/back-end/function/allFunction.jsp" type="button">功能列表</a>
+
  <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script> 
     <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
     
